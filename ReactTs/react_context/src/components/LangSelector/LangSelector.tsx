@@ -1,19 +1,15 @@
+import { useContext } from "react";
 import { Lang } from "../../types/Lang";
+import { LangContext } from "../LangContext";
 
-type Props = {
-  value: Lang;
-  onChange: (lang: Lang) => void ;
-}
+export const LangSelector: React.FC = () => {
+  const {lang, setLang} = useContext(LangContext);
 
-export const LangSelector: React.FC<Props> = ({
-  value = 'en',
-  onChange = () => {},
-}) => {
   return (
     <select
-      value={value}
+      value={lang}
       onChange={event => {
-        onChange(event.target.value as Lang);
+        setLang(event.target.value as Lang);
       }}
     >
       <option value={Lang.EN}>English</option>

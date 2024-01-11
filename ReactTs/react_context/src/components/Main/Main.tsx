@@ -2,10 +2,6 @@ import { useReducer } from "react";
 import { Lang } from "../../types/Lang";
 import { HomePage } from "../HomePage/HomePage";
 
-type Props = {
-  lang: Lang,
-};
-
 type Action = {type: 'increase'}
             | {type: 'decrease'}
             | {type: 'add', payload: number}
@@ -53,7 +49,7 @@ const initialState: State = {
   lang: Lang.EN,
 }
 
-export const Main: React.FC<Props> = ( { lang }) => {
+export const Main: React.FC = () => {
   const [{counter}, dispatch] = useReducer(reducer, initialState);
 
   const decrease = () => {
@@ -67,10 +63,10 @@ export const Main: React.FC<Props> = ( { lang }) => {
   const add = () => {
     dispatch({type: 'add', payload: 10 })
   }
-  
+
   return (
     <main>
-      <HomePage lang={lang} />
+      <HomePage />
 
       <button onClick={increase}>+</button>
         {counter}
