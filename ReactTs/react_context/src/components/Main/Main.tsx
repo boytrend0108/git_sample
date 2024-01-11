@@ -1,14 +1,24 @@
-import { Lang } from "../../types/Lang";
+import { useState } from "react";
 import { HomePage } from "../HomePage/HomePage";
 
-type Props = {
-  lang: Lang,
-}
 
-export const Main: React.FC<Props> = ( {lang }) => {
+export const Main: React.FC= () => {
+  const [counter, setCounter] = useState(0);
+   
+  const increase = () => {
+    setCounter(current => current + 1);
+  }
+
+  const decrease = () => {
+    setCounter(current => current - 1);
+  }
   return (
     <main>
-      <HomePage lang={lang} />
+      <HomePage />
+
+      <button onClick={decrease}>-</button>
+        {counter}
+      <button onClick={increase}>+</button>
     </main>
   );
 }

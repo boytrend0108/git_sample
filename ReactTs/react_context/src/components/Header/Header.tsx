@@ -1,12 +1,10 @@
-import { Lang } from "../../types/Lang";
+import { useContext } from "react";
 import { LangSelector } from "../LangSelector/LangSelector";
+import { LangContext } from "../LangContext";
 
-type Props = {
-  lang: Lang,
-  setLang: (value: Lang) => void
-}
 
-export const Header: React.FC<Props>= ({ lang, setLang }) => {
+export const Header: React.FC= () => {
+  const {lang, setLang} = useContext(LangContext)
   return (
     <header className="header">
       Mate academy
