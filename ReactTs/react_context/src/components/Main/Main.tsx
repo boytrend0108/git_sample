@@ -1,14 +1,11 @@
-import { Lang } from "../../types/Lang";
 import { HomePage } from "../HomePage/HomePage";
 
-type Props = {
-  lang: Lang,
-}
+type Props = {};
 
-export const Main: React.FC<Props> = ( {lang }) => {
+export const Main: React.FC<Props> = () => {
   return (
     <main>
-      <HomePage lang={lang} />
+      <HomePage />
     </main>
   );
 }
