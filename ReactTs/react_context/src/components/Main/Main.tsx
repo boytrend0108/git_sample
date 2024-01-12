@@ -1,56 +1,11 @@
-import { useReducer } from "react";
-import { Lang } from "../../types/Lang";
+import { useContext } from "react";
 import { HomePage } from "../HomePage/HomePage";
+import { DispatchContext, StateContext } from "../State";
 
-type Action = {type: 'increase'}
-            | {type: 'decrease'}
-            | {type: 'add', payload: number}
-            | {type: 'lang', payload: Lang}
-
-interface State {
-  counter: number,
-  lang: Lang,
-}
-
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case 'increase':
-      return {
-        ...state,
-        counter: state.counter + 1,
-      }
-
-    case 'decrease':
-      return {
-        ...state, 
-        counter: state.counter - 1,
-      }
-    
-    case 'add':
-      return {
-        ...state,
-        counter: state.counter + action.payload,
-      }
-
-    case 'lang':
-      return {
-        ...state,
-        lang: action.payload
-      }
-    
-    default: 
-      return state
-  }
-};
-
-
-const initialState: State = {
-  counter: 0,
-  lang: Lang.EN,
-}
 
 export const Main: React.FC = () => {
-  const [{counter}, dispatch] = useReducer(reducer, initialState);
+  const dispatch = useContext(DispatchContext)
+  const {counter} = useContext(StateContext)
 
   const decrease = () => {
     dispatch({type: 'decrease'})

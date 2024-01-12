@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { Lang } from "../../types/Lang";
-import { LangContext } from "../LangContext";
+import { DispatchContext, StateContext } from "../State";
+
 
 export const LangSelector: React.FC = () => {
-  const {lang, setLang} = useContext(LangContext);
+  const {lang} = useContext(StateContext);
+  const dispatch = useContext(DispatchContext)
 
   return (
     <select
       value={lang}
       onChange={event => {
-        setLang(event.target.value as Lang);
+        dispatch({type: 'setLang', payload: event.target.value as Lang});
       }}
     >
       <option value={Lang.EN}>English</option>

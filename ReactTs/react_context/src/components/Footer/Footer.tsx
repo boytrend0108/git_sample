@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { translate } from "../../utils/translate";
-import { LangContext } from "../LangContext";
+import { StateContext } from "../State";
 
 export const Footer: React.FC = () => {
-  const {lang} = useContext(LangContext);
+  const {lang} = useContext(StateContext);
   
   return (
     <footer>
