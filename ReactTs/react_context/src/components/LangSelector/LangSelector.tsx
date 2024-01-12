@@ -1,23 +1,25 @@
+import { useContext } from "react";
 import { Lang } from "../../types/Lang";
+import { StateContext } from "../../State/State";
+import { DispatchContext } from "../../State/State";
 
-type Props = {
-  value: Lang;
-  onChange: (lang: Lang) => void ;
-}
+export const LangSelector: React.FC = () => {
+  const { lang } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext)
+  console.log(lang)
 
-export const LangSelector: React.FC<Props> = ({
-  value = 'en',
-  onChange = () => {},
-}) => {
   return (
     <select
-      value={value}
+      value={lang}
       onChange={event => {
-        onChange(event.target.value as Lang);
+        dispatch({
+          type: 'setLang',
+          payload: event.target.value as Lang
+        });
       }}
     >
-      <option value={Lang.EN}>English</option>
       <option value={Lang.UA}>Українська</option>
+      <option value={Lang.EN}>English</option>
     </select>
   );
 };

@@ -1,10 +1,9 @@
-import { Lang } from "../../types/Lang";
+import { useContext } from "react";
 import { translate } from "../../utils/translate";
+import { StateContext } from "../../State/State";
 
-type Props = {
-  lang: Lang,
-}
-export const Footer: React.FC<Props> = ({lang}) => {
+export const Footer: React.FC = () => {
+  const { lang } = useContext(StateContext)
   return (
     <footer>
       <p> {translate('footer.greating', lang)} </p>

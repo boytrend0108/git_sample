@@ -1,14 +1,18 @@
-import { Lang } from "../../types/Lang";
+import { useContext } from "react";
 import { HomePage } from "../HomePage/HomePage";
+import { DispatchContext, StateContext } from "../../State/State";
 
-type Props = {
-  lang: Lang,
-}
+export const Main: React.FC = () => {
+  const dispatch = useContext(DispatchContext);
+  const {counter} = useContext(StateContext);
 
-export const Main: React.FC<Props> = ( {lang }) => {
   return (
     <main>
-      <HomePage lang={lang} />
+      <HomePage />
+      <button onClick={() => dispatch({type: 'increase'})}>+</button>
+      <button onClick={() => dispatch({type: 'decrease'})}>-</button>
+      <button onClick={() => dispatch({type: 'add', payload: 20})}>+20</button>
+      {counter}
     </main>
   );
 }
